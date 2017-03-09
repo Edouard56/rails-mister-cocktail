@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  resources :coctails, only: [:index]
+  resources :cocktails, only: [:index]
 end
