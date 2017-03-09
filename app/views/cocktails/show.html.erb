@@ -10,3 +10,22 @@ Here is the cocktail you ask !!!
   <strong>Name:</strong>
   <%= @cocktail.name %>
 </p>
+
+<% @cocktail.doses.each do |dose| %>
+  <ul>
+    <li>
+    <strong>ingredient:</strong>
+     <%= dose.ingredient.name %>
+    <strong>Description:</strong>
+    <span>
+    <%= dose.description %>
+    <%= link_to "delete", cocktail_dose_path(@cocktail),
+    method: :delete,
+    data: {confirm: "Are you sure?" } %>
+    </span>
+    </li>
+  </ul>
+<% end %>
+
+<%= link_to "Add a new dose", new_cocktail_dose_path(@cocktail) %>
+<%= link_to "Come back to the cocktails' list", cocktails_path %>
