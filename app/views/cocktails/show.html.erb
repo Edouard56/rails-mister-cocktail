@@ -1,31 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <h1><%= @cocktail.name %></h1>
+      <p>Ajouter les ingrédients du <%= @cocktail.name %></p>
+      <%= simple_form_for([@cocktail, @dose]) do |f| %>
+        <%= f.error_notification %>
+        <%= f.input :description %>
+        <%= f.association :ingredient %>
+        <%= f.submit 'Ajouter !' %>
+      <% end %>
 
-Here is the cocktail you ask !!!
+     <%= link_to 'Back', cocktails_path %>
 
-<br>
-<br>
-<br>
-<br>
+     <p>Voici les doses !</p>
+     <% @cocktail.doses.each do |dose| %>
+      <ul>
+        <li>
+          <span>
+          <%= dose.description %> - <%= dose.ingredient.name %>
+          <%= link_to "delete", dose_path(dose),
+          method: :delete,
+          data: {confirm: "Are you sure?" } %>
+          </span>
+        </li>
+      </ul>
+     <% end %>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @cocktail.name %>
-</p>
-
-<% @cocktail.doses.each do |dose| %>
-  <ul>
-    <li>
-    <strong>ingredient:</strong>
-     <%= dose.ingredient.name %>
-    <strong>Description:</strong>
-    <span>
-    <%= dose.description %>
-    <%= link_to "delete", cocktail_dose_path(@cocktail),
-    method: :delete,
-    data: {confirm: "Are you sure?" } %>
-    </span>
-    </li>
-  </ul>
-<% end %>
-
-<%= link_to "Add a new dose", new_cocktail_dose_path(@cocktail) %>
 <%= link_to "Come back to the cocktails' list", cocktails_path %>
