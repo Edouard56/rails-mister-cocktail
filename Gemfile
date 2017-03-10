@@ -8,6 +8,7 @@ end
 ruby '2.3.3'
 
 gem 'figaro'
+gem 'cloudinary'
 
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
